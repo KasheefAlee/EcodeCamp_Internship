@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: darkkhaki;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Adjust text color for better contrast */
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ddd;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Stock Price Prediction </h1>
+    <h2>by Kashif ALi Azim</h2>
+    <form id="stockForm" action="/predict" method="POST">
+        <label for="ticker">Enter Stock Ticker Symbol:</label>
+        <input type="text" id="ticker" name="stock_data" placeholder="e.g., AAPL, GOOGL" required>
+        <div class="error" id="error-message">Please enter a valid ticker symbol.</div>
+        <button type="submit">Predict</button>
+    </form>
+
+    <div class="result" id="result">
+        {% if prediction is not none %}
+            <p>Predicted Price: {{ prediction }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('stockForm');
+    const tickerInput = document.getElementById('ticker');
+    const errorMessage = document.getElementById('error-message');
+
+    form.addEventListener('submit', function (e) {
+        errorMessage.style.display = 'none';
+        const ticker = tickerInput.value.trim();
+
+        if (ticker === '' || !/^[A-Za-z]+$/.test(ticker)) {
+            e.preventDefault();
+            errorMessage.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>
