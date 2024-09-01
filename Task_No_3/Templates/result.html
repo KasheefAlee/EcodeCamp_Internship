@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/static/ddd.jpeg'); /* Updated to use a relative path */
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            color: #ffffff; /* Loyal Blue */
+            font-size: 3em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+        }
+        header h2 {
+            color: #ffffff;
+        }
+        .result-container {
+            background: #2d2d2d; /* White */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            text-align: center;
+        }
+        .result-container h1 {
+            color: #ffffff; /* Loyal Blue */
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .result-container h2 {
+            color: #ffffff; /* Loyal Blue */
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .result-container ul {
+            list-style-type: none;
+            padding: 0;
+            color: #ffffff; /* Dark Gray for list items */
+        }
+        .result-container li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        a {
+            color: #ffffff; /* Loyal Blue */
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Titanic Survival Prediction</h1>
+
+        <h2>By Kashif Ali Azim</h2>
+    </header>
+    <div class="result-container">
+        <h1>{{ prediction_text }}</h1>
+        <h2>Input Summary:</h2>
+        <ul>
+            <li>Passenger Class: {{ input_data['pclass'] }}</li>
+            <li>Sex: {{ input_data['sex'] }}</li>
+            <li>Age: {{ input_data['age'] }}</li>
+            <li>Siblings/Spouses Aboard: {{ input_data['sibsp'] }}</li>
+            <li>Parents/Children Aboard: {{ input_data['parch'] }}</li>
+            <li>Fare: {{ input_data['fare'] }}</li>
+            <li>Embarked: {{ input_data['embarked'] }}</li>
+        </ul>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
